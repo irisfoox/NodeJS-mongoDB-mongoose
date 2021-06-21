@@ -10,6 +10,17 @@ const newUser=async(req,res)=>{
         res.send("cannot save new user"+ error.message)
     }
 }
+const getUserById=async(req,res)=>{
+    try{
+        const user=await User.findById(req.params.userId) //all user det but blog only with id
+        res.status(205).json({user:user})
+        const user1=await User.findById(req.params.userId).populate('blogs')  // all det of blogs
+        res.send({user:user1})
+        const user2=await User.findById(req.params.userId).populate({path:'blogs',select:{title:1}}) //only title of all blogs (&id)
+    }catch(err){
+        res.send({user:user2})
+    }
+}
 const findUserById=async(req,res)=>{
     try{
         let user=await User.findById(req.params.id);
@@ -68,5 +79,5 @@ const deleteOne=(req,res)=>{
         res.send(err);
     })
 }
-module.exports={newUser,findUserById,getAllUsers,updateById,findUserByName,updateOne,deleteUserById,deleteOne}
+module.exports={newUser,getUserById,findUserById,getAllUsers,updateById,findUserByName,updateOne,deleteUserById,deleteOne}
     //to export function/obj containing a few func
