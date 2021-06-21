@@ -7,6 +7,11 @@ const userSchema = mongoose.Schema({
     // date: { type: Date },
     products:[
         {type:mongoose.Schema.Types.ObjectId , ref:'Product'}  //same Product name as export of productModel
+    ],
+    blogs:[
+        {type:mongoose.Schema.Types.ObjectId,
+        ref:'Blog'
+        }
     ]
     
 }) 
