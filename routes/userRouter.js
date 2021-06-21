@@ -2,6 +2,7 @@ const userRouter=require("express").Router();
 const user=require("../controlers/userController"); //all user functions
 
 userRouter.post('/newUser',user.newUser);
+userRouter.get('/getUserById',user.getUserById); //populate blog
 userRouter.get('/findUserById/:id',user.findUserById);
 userRouter.get('/getAllUsers',user.getAllUsers);
 userRouter.patch('/updateById',user.updateById);
